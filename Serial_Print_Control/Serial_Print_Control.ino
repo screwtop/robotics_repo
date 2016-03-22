@@ -116,32 +116,24 @@ void spin_left() {
   analogWrite(MOTOR_R_ENABLE_PIN, 0.8 * MAX_PWM_DUTY);
   analogWrite(MOTOR_L_ENABLE_PIN, 0.8 * MAX_PWM_DUTY); 
 }
-void loop()
-{
+void loop(){
  if (Serial.available()){
       char Commandchar = Serial.read();
-      if (Commandchar == '1'){
-        RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR + 0.01;
-        Serial.println(RIGHT_MOTOR_SPEED_FACTOR); }
-      else if (Commandchar == '2'){
-        RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR - 0.01;
-        Serial.println(RIGHT_MOTOR_SPEED_FACTOR); }
-      if (Commandchar == '+'){
-        RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR + 0.1;
-        Serial.println(RIGHT_MOTOR_SPEED_FACTOR); }
-      else if (Commandchar == '-') {
-        RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR - 0.1;
-        Serial.println(RIGHT_MOTOR_SPEED_FACTOR); }
-      else if (Commandchar == 'W')
+      if (Commandchar == 'W')
         forward(MAX_PWM_DUTY);
-      else if (Commandchar == 'Q')
+        Serial.write("I am going forwards!")
+      else if (Commandchar == 'Q');
         brake();
+        Serial.write("I have stoped");
       else if (Commandchar == 'A')
         spin_left();
+        Serial.write("I am spinning left");
       else if (Commandchar == 'D')
         spin_right();
+        Serial.write("I am spinning right");
       else if (Commandchar == 'S')
         reverse(MAX_PWM_DUTY);
+        Serial.write("I am going backwards!");
       else{
       }
     }

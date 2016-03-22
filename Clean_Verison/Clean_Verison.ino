@@ -1,6 +1,6 @@
 const int Switch1Pin = 2;
 const int Switch2Pin = 3;
-int Range_Threshold = 50; //cm
+int Range_Threshold = 2; //cm
 const int Ledpin = 19;
 const int Bumpleft = 14;
 const int Bumpright = 15;
@@ -57,7 +57,7 @@ void setup()
   pinMode(MOTOR_R_B_PIN, OUTPUT);
 }
 
-void forward(int PWM)  {
+void reverse(int PWM)  {
   digitalWrite(MOTOR_L_A_PIN, LOW);
   digitalWrite(MOTOR_L_B_PIN, HIGH);
   digitalWrite(MOTOR_R_A_PIN, LOW);
@@ -67,7 +67,7 @@ void forward(int PWM)  {
 
 }
 
-void reverse(int PWM) {
+void forward(int PWM) {
   digitalWrite(MOTOR_L_A_PIN, HIGH);
   digitalWrite(MOTOR_L_B_PIN, LOW);
   digitalWrite(MOTOR_R_A_PIN, HIGH);
@@ -120,12 +120,6 @@ void spin_left() {
   analogWrite(MOTOR_L_ENABLE_PIN, 0.8 * SLOW_PWM_DUTY);
 }
 
-void testloop()
-{
-
-
-}
-
 void loop()
 { 
 
@@ -133,7 +127,7 @@ void loop()
 
   Serialread();
       Objectdodge();
-        WallHit();
+       //WallHit();
           Swithmotortoggle();
             Bumpsensors();
 
@@ -152,7 +146,7 @@ void Serialread()
         RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR + 0.1;
       else if (Commandchar == '-')
         RIGHT_MOTOR_SPEED_FACTOR = RIGHT_MOTOR_SPEED_FACTOR - 0.1;
-      else if (Commandchar == 'W')
+      else if (Commandchar == '')
         forward(MAX_PWM_DUTY);
       else if (Commandchar == 'Q')
         brake();
@@ -196,7 +190,7 @@ void Swithmotortoggle()
   }
 }
 
-void WallHit(){
+/*void WallHit(){
   //values is an array with 10 slots (starting at slot 0)
   int values [10];
   int i = 0;
@@ -215,7 +209,7 @@ void WallHit(){
   }
   
 }
-
+*/
 void Objectdodge()
 {	
   unsigned int Range = Get_Range();
