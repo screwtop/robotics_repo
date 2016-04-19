@@ -1,0 +1,23 @@
+# midish (MIDI shell) basics
+
+# Attach output to the computer's MIDI interface:
+dnew 0 "MidiSport 1x1" wo
+
+# Tell midish what notes to use for the metronome's strong and weak beats
+metrocf {non {0 0} 48 127} {non {0 0} 64 100}
+
+# Goto the start:
+g 0
+
+# Set tempo to 100 beats/min
+t 100
+
+# Start the metronome
+m on
+
+# Start playing
+p
+
+# Stop playing 
+s
+
